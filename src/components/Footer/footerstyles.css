@@ -1,0 +1,32 @@
+footer {
+    box-shadow: 2px 2px 2px 1px rgba(12, 12, 12, 0.2);
+    text-align: center;
+    background-color: #dcdcdc;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-weight: 300;
+    color: rgb(44, 43, 43);
+    margin: 0;
+  }
+  
+  @media (max-width: 788px) {
+    footer {
+      display: block;
+    }
+  }
+  .social-media a {
+    margin: 10px;
+    padding: 5px;
+  }
+  .social-media a i {
+    color: #4855a3;
+    font-size: 30px;
+  }
+  .social-media i:hover {
+    color: #43397c;
+  }

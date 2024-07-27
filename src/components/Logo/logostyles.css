@@ -1,0 +1,8 @@
+.clothesLogo{
+    width: 110px;
+    cursor: pointer;
+}
+
+.clothesLogo:hover{
+    opacity: 0.5;
+}

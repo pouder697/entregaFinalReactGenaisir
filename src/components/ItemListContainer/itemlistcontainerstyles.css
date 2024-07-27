@@ -1,0 +1,12 @@
+.listContainer {
+    list-style: none;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+}
+
+h2 {
+    display: block;
+    color: #fff;
+    background-color: #112bbd;
+}
