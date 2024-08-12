@@ -8,6 +8,6 @@ function Logo(){
             <img className="clothesLogo" src={clotheslogo} alt="Logo de CLOTHING" />
         </div>
     )
-};
+}
 
 export default Logo;

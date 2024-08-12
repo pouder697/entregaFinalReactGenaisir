@@ -7,6 +7,8 @@ import ItemDetail from "./components/ItemDetail/ItemDetail";
 import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
+import Cart from "./components/Cart/Cart";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   const [productos, setProductos] = useState([]);
@@ -21,6 +23,8 @@ function App() {
 
   return (
     <>
+
+    <CartProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -32,10 +36,16 @@ function App() {
             path="/detalle/:id"
             element={<ItemDetail productos={productos} />}
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*"
+           element={<NotFound />} 
+           />
+          <Route path="/cart"
+           element={<Cart />} 
+           />
         </Routes>
         <Footer />
       </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
