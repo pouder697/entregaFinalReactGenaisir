@@ -1,22 +1,32 @@
-import React, {useContext} from 'react';
 import Cart from '../../assets/cart.svg';
-import '../Buttons/buttonsstyles.css'
-import CartContext from '../../contexts/CartContext';
+import { useAppContext } from '../../contexts/AppContext';
+import { Link } from 'react-router-dom';
+import '../Buttons/buttonsstyles.css';
+import '../CartWidget/cartwidgetstyles.css';
+
 
 function CartWidget(){
 
-    const [cart,setCart] =useContext(CartContext);
+    const {cart, crearOrden} =useAppContext();
 
-    const cantidad = cart.reduce((acc, curr) => {
-        return acc + curr.quantity;
-    }, 0 );
-
+    const handdleCart = () =>{
+        crearOrden();
+    }
 
     return(
-        <div className="button cart">
-             <img  src={Cart} alt="cart-widget" />
-              {cantidad}
-        </div>
+        <>
+            { cart.length > 0 ?
+            <div className="button cart">
+            <Link to={"/cart"}>
+             <img  src={Cart} alt="cart-widget" />  <p>{cart.length} </p>
+            </Link>   
+            </div>
+            :
+            <div className='button cart' onClick={() => handdleCart()}>
+            <img  src={Cart} alt="cart-widget" />  <p>{cart.length} </p>      
+            </div>
+            }
+        </>
     )
 }
 

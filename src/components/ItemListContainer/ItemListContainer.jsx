@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ItemList from '../ItemList/ItemList';
 import '../ItemListContainer/itemlistcontainerstyles.css';
+import { useAppContext } from '../../contexts/AppContext';
 
-const ItemListContainer = ({ productos }) => {
+const ItemListContainer = () => {
+
+    const {loadData, productos } = useAppContext();
+
+    useEffect(() =>{
+        loadData();
+    })
 
     return (
         <>

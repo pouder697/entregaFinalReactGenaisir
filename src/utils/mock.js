@@ -51,7 +51,7 @@ const productos = [
         id: 7,
         nombre: "Remera Basic Blanca",
         precio: "25.000",
-        categoria: "Sin Remeras",
+        categoria: "Remeras",
         imagen: "https://i.postimg.cc/8P07FCJW/remera1.jpg"
 
     },
@@ -74,13 +74,3 @@ const productos = [
 ];
 
 export default productos;
-/*
-export default function fetchData() {
-    return new Promise(resolve => {
-        console.log("hola")
-        setTimeout(() => {
-            resolve(productos);
-        }, 5000);
-    });
-};
-*/

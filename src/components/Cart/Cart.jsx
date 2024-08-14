@@ -1,9 +1,13 @@
 import React from "react";
-
+import { useAppContext } from "../../contexts/AppContext";
 function Cart() {
-  return (
-  <div>Soy el carrito</div>
-
-  )
+  const { carrito } = useAppContext();
+    return (
+        <div>Este es mi carrito
+            <button onClick={() => console.log(carrito)}>
+                Mostrar carrito
+            </button>
+        </div>
+    );
 }
 export default Cart;

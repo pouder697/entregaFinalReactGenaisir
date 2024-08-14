@@ -1,40 +1,30 @@
-import { useEffect, useState } from "react";
+
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import fetchData from "./utils/fetch";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
 import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Cart from "./components/Cart/Cart";
-import { CartProvider } from "./contexts/CartContext";
+import { AppContextProvider } from "./contexts/AppContext";
 
 function App() {
-  const [productos, setProductos] = useState([]);
-
-  useEffect(() => {
-    fetchData()
-      .then((response) => {
-        setProductos(response);
-      })
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <>
 
-    <CartProvider>
+    <AppContextProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
           <Route
             path="/"
-            element={<ItemListContainer productos={productos} />}
+            element={<ItemListContainer />}
           />
           <Route
             path="/detalle/:id"
-            element={<ItemDetail productos={productos} />}
+            element={<ItemDetail />}
           />
           <Route path="*"
            element={<NotFound />} 
@@ -45,7 +35,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-      </CartProvider>
+      </AppContextProvider>
     </>
   );
 }
