@@ -8,6 +8,7 @@ const ItemListContainer = () => {
     const {loadData, productos } = useAppContext();
 
     useEffect(() =>{
+        console.log("Llamando a loadData desde ItemListContainer");
         loadData();
     },[])
 

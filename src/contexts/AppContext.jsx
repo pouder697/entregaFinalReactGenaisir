@@ -25,18 +25,19 @@ export const AppContextProvider = (props) => {
 
 const [productos,setProductos] = useState([]);
 const [cart, setCart] = useState([]);
-const [productoSeleccionado, setProductoSeleccionado] = useState({});
 
 function loadData() {
-    console.log("CARGANDO DATOS")
 
     getDocs(productsRef).then(snapshot =>{
         let arrayDeProductos = snapshot.docs.map(producto => producto.data());
+        console.log("Productos cargados:", arrayDeProductos);
         setProductos(arrayDeProductos);
         console.log(arrayDeProductos);
     })
 }
     /*
+    Manera antigua de obtener datos del mock
+
     fetchData()
       .then((response) => {
         setProductos(response);
@@ -44,10 +45,6 @@ function loadData() {
       .catch((err) => console.error(err));
 }*/
 
-function viewDetail(id){
-const findProduct = productos.find(el => el.id === parseInt(id));
-setProductoSeleccionado(findProduct);
-}
 
 function addToCart(id) {
     const auxiliarCart = [...cart]
@@ -63,9 +60,9 @@ function crearOrden() {
 
     if (cart.length > 0) {
         const nuevaOrden = {
-            nombre: "Lucas Ruiz",
+            nombre: "Andrés Genaisir",
             telefono: 231231231,
-            mail: "lucas@coder.com",
+            mail: "andres@gmail.com",
             productos: cart,
         };
 
@@ -84,7 +81,7 @@ function crearOrden() {
 
 
     return(
-        <AppContext.Provider value={{ productos, cart, addToCart, loadData, crearOrden,viewDetail, productoSeleccionado}}>
+        <AppContext.Provider value={{ productos, cart, addToCart, loadData, crearOrden}}>
             {props.children}
         </AppContext.Provider>
     );

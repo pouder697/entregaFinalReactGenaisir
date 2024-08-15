@@ -3,33 +3,39 @@ import { useParams } from "react-router-dom";
 import Item from "../Item/Item";
 import { useAppContext } from "../../contexts/AppContext";
 
-
-const ItemDetail = () => { 
-
+const ItemDetail = () => {
   const { id } = useParams();
-
-  const {loadData, productos, viewDetail ,productoSeleccionado} = useAppContext();
-
-
+  const { productos } = useAppContext();
+  const [productoSeleccionado, setProductoSeleccionado] = useState();
 
   useEffect(() => {
-    viewDetail(id)
-},[]);
+    console.log("Productos en ItemDetail:", productos);
+    if (productos.length > 0) {
+      const findProduct = productos.find(el => el.id === parseInt(id));
+      console.log("Producto encontrado:", findProduct);
+      setProductoSeleccionado(findProduct);
+    }
+  }, [productos, id]);
 
   return (
-    <>
     <div>
-      <p>Detalle del producto {productoSeleccionado.nombre}</p>
-      <Item
-        key={productoSeleccionado.id}
-        id={productoSeleccionado.id}
-        nombre={productoSeleccionado.nombre}
-        precio={productoSeleccionado.precio}
-        imagen={productoSeleccionado.imagen}
-        categoria ={productoSeleccionado.categoria}
-      />
+      {productoSeleccionado ? (
+        <>
+          <h2>Detalle del producto</h2>
+          <Item
+            key={productoSeleccionado.id}
+            id={productoSeleccionado.id}
+            nombre={productoSeleccionado.nombre}
+            precio={productoSeleccionado.precio}
+            imagen={productoSeleccionado.imagen}
+            categoria={productoSeleccionado.categoria}
+            stock={productoSeleccionado.stock}
+          />
+        </>
+      ) : (
+        <p>Cargando...</p>
+      )}
     </div>
-    </>
   );
 };
 
