@@ -1,19 +1,8 @@
 import React, {createContext, useContext, useState } from "react";
 import Swal from "sweetalert2";
-import {initializeApp} from "firebase/app";
+import { db } from "../Firebase/Firebase";
 import {collection, getDocs, getFirestore} from "firebase/firestore";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAQMl_azaTtNBVZ73IrbYuC3NRe6ZWKRRI",
-    authDomain: "entrega-final-reactjs-genaisir.firebaseapp.com",
-    projectId: "entrega-final-reactjs-genaisir",
-    storageBucket: "entrega-final-reactjs-genaisir.appspot.com",
-    messagingSenderId: "584475486570",
-    appId: "1:584475486570:web:218f0c5b869873faffdd13"
-  };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 const productsRef = collection(db, "productos");
 
