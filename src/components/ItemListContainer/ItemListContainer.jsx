@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import ItemList from '../ItemList/ItemList';
 import '../ItemListContainer/itemlistcontainerstyles.css';
 import { useAppContext } from '../../contexts/AppContext';
+import Loader from '../Loader/Loader';
 
 const ItemListContainer = () => {
 
@@ -16,11 +17,15 @@ const ItemListContainer = () => {
         <>
             {
                 productos.length === 0 ?
-                    <p>Cargando...</p>
+                    <main>
+                    <Loader />
+                    </main>
                     :
                     <>
+                    <main>
                     <h2 style={{padding: "2rem"}}>Bienvenidos a CLOTHING®</h2>
                     <ItemList className="listContainer" productos={productos} />
+                    </main>
                     </>
             }
         </>

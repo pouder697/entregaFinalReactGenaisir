@@ -13,9 +13,11 @@ function App() {
 
   return (
     <>
-
+    
     <AppContextProvider>
+      
       <BrowserRouter>
+      
         <NavBar />
         <Routes>
           <Route
@@ -26,6 +28,10 @@ function App() {
             path="/detalle/:id"
             element={<ItemDetail />}
           />
+            <Route
+            path="/:categoria"
+            element={<FiltroCategoria />}
+            />
           <Route path="*"
            element={<NotFound />} 
            />
@@ -34,8 +40,10 @@ function App() {
            />
         </Routes>
         <Footer />
+        
       </BrowserRouter>
       </AppContextProvider>
+      
     </>
   );
 }

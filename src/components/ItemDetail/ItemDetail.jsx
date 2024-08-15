@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Item from "../Item/Item";
 import { useAppContext } from "../../contexts/AppContext";
+import Loader from "../Loader/Loader";
 
 const ItemDetail = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const ItemDetail = () => {
           />
         </>
       ) : (
-        <p>Cargando...</p>
+        <Loader />
       )}
     </div>
   );

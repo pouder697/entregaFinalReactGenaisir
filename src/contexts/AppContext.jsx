@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { db } from "../Firebase/Firebase";
-import {collection, getDocs, getFirestore} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 
 
 const productsRef = collection(db, "productos");
