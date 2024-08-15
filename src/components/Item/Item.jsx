@@ -1,11 +1,10 @@
 import React from "react";
-
 import "../Item/itemstyles.css";
 import { Link } from "react-router-dom";
 import AddCartButton from "../Buttons/AddCartButton";
 
 
-const Item = ({ nombre, precio, id, imagen, categoria }) => {
+const Item = ({ nombre, precio, id, imagen, categoria, stock }) => {
 
 
 
@@ -24,6 +23,9 @@ const Item = ({ nombre, precio, id, imagen, categoria }) => {
       </p>
       <p className="card-text">
         <b>Categoría:</b> {categoria}
+      </p>
+      <p className="card-text stock">
+        <b>Stock:</b> {stock} unidades
       </p>
       <AddCartButton />
       <Link to={`/detalle/${id}`}>

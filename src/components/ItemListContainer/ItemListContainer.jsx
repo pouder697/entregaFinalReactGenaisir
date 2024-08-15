@@ -9,7 +9,7 @@ const ItemListContainer = () => {
 
     useEffect(() =>{
         loadData();
-    })
+    },[])
 
     return (
         <>

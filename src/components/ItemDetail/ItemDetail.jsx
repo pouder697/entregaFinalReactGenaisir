@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Item from "../Item/Item";
+import { useAppContext } from "../../contexts/AppContext";
 
 
-const ItemDetail = ({productos}) => { 
+const ItemDetail = () => { 
 
   const { id } = useParams();
 
- 
+  const {loadData, productos, viewDetail ,productoSeleccionado} = useAppContext();
 
-  const [productoSeleccionado, setProductoSeleccionado] = useState({});
+
 
   useEffect(() => {
-    const findProduct = productos.find(el => el.id === parseInt(id));
-
-    setProductoSeleccionado(findProduct);
+    viewDetail(id)
 },[]);
 
   return (
+    <>
     <div>
       <p>Detalle del producto {productoSeleccionado.nombre}</p>
       <Item
@@ -29,6 +29,7 @@ const ItemDetail = ({productos}) => {
         categoria ={productoSeleccionado.categoria}
       />
     </div>
+    </>
   );
 };
 
