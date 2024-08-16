@@ -1,28 +1,36 @@
-import React from "react";
 import Item from "../Item/Item";
 import "../ItemList/itemliststyles.css";
-import { useState } from "react";
+import "../FiltroCategoria/filtrocategoria.css";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAppContext } from "../../contexts/AppContext";
 
-const FiltroCategoria = ({ productos }) => {
+const FiltroCategoria = () => {
 
-  const {categoria} =useParams();
+  const {categoria} = useParams();
 
-  const [category, setCategory] = useState("");
+  const {loadData, productos} =useAppContext();
 
-  const filterProductsByCat = (productos, categoria) => {
-    return productos.filter((producto) =>
-      producto.categoria.toLowerCase().includes(categoria)
-    );
-  };
+  const [category, setCategory] = useState();
 
- setCategory(filterProductsByCat);
+
+ const filterProductsByCat = (cat) => {
+    const filtrado = productos.filter((producto) =>
+      producto.categoria.toLowerCase().includes(cat)
+    ); 
+    return filtrado;
+}
+useEffect(()=>{loadData();
+    filterProductsByCat();
+},[category, setCategory])
+
  
   return (
     
       <div className="row justify-content-between">
+        <h1>{categoria}</h1>
       {
-          filterProductsByCat(productos, categoria).map((producto) => (
+          filterProductsByCat(categoria).map((producto) => (
             <Item
               key={producto.id}
               id={producto.id}

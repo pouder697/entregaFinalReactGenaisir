@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
 import NotFound from "./components/NotFound/NotFound";
 import Footer from "./components/Footer/Footer";
+import FiltroCategoria from "./components/FiltroCategoria/FiltroCategoria";
 import "./App.css";
 import Cart from "./components/Cart/Cart";
 import { AppContextProvider } from "./contexts/AppContext";
