@@ -1,33 +1,27 @@
 import Cart from '../../assets/cart.svg';
 import { useAppContext } from '../../contexts/AppContext';
-import { Link } from 'react-router-dom';
 import '../Buttons/buttonsstyles.css';
 import '../CartWidget/cartwidgetstyles.css';
 
 
 function CartWidget(){
 
-    const {cart, crearOrden} =useAppContext();
+    const { cart, setCartShow, cartShow, listCart } = useAppContext();
 
-    const handdleCart = () =>{
-        crearOrden();
+
+    const showCart = () => {
+        setCartShow( (cartShow === "none") ? "flex" : "none" )
     }
+
 
     return(
         <>
-            { cart.length > 0 ?
-            <div className="button cart">
-            <Link to={"/cart"}>
-             <img  src={Cart} alt="cart-widget" />  <p>{cart.length} </p>
-            </Link>   
+        
+            <div className='button cart' onClick={() => showCart()}>
+            <img  src={Cart} alt="cart-widget" />  <span>{listCart.length} </span>      
             </div>
-            :
-            <div className='button cart' onClick={() => handdleCart()}>
-            <img  src={Cart} alt="cart-widget" />  <p>{cart.length} </p>      
-            </div>
-            }
         </>
     )
 }
 
-export default CartWidget
+export default CartWidget;

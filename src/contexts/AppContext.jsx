@@ -14,6 +14,8 @@ export const AppContextProvider = (props) => {
 
 const [productos,setProductos] = useState([]);
 const [cart, setCart] = useState([]);
+const [listCart, setListCart] = useState([]);
+const [cartShow, setCartShow] = useState("none")
 
 function loadData() {
 
@@ -34,18 +36,40 @@ function loadData() {
       .catch((err) => console.error(err));
 }*/
 
+const addProduct = (id) => {
+    //producto a añadir al carrito
+    const producAdd = productos.find(product => product.id === id) 
+    const productsToMaintain = listCart.filter(product => product.id !== id)
 
-function addToCart(id) {
-    const auxiliarCart = [...cart]
+    let add = true;
+    for(let product of listCart) {  
+        if(product.id === id){
+            let quantity = product.quantity;
 
-    const addedProduct = productos.find(producto=> producto.id === id)
+            if(quantity < producAdd.stock){
+                const newQuantity = {...product, quantity: quantity + 1}
+                setListCart( [...productsToMaintain, newQuantity] )
+            }
 
-    auxiliarCart.push(addedProduct);
-    setCart(auxiliarCart);
+            add = false;
+            break
+        }  
+    }
 
+    add && setListCart( [...productsToMaintain, {...producAdd, quantity: 1}] )
 }
 
-function crearOrden() {
+const clearCart = () => {
+    setListCart([]);
+}
+
+const removeFromCart = (id) => {
+    const updateList = listCart.filter(product => product.id !== id)
+    setListCart(updateList);
+}
+
+
+/*function crearOrden() {
 
     if (cart.length > 0) {
         const nuevaOrden = {
@@ -64,13 +88,11 @@ function crearOrden() {
             icon: "error"
           });
     }
-}
-
-
+}*/
 
 
     return(
-        <AppContext.Provider value={{ productos, cart, addToCart, loadData, crearOrden}}>
+        <AppContext.Provider value={{ productos, cart,clearCart,removeFromCart, addProduct, loadData, listCart, setListCart, cartShow, setCartShow}}>
             {props.children}
         </AppContext.Provider>
     );

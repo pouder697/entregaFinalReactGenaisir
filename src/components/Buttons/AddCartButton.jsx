@@ -3,13 +3,13 @@ import { useAppContext } from "../../contexts/AppContext";
 
 function AddCartButton(id) {
 
-  const {addToCart} = useAppContext();
+  const {addProduct} = useAppContext();
 
   return (
     <button
       type="button"
       className="btn btn-success"
-      onClick={() => addToCart(id)}
+      onClick={() => addProduct(id)}
     >
       + Agregar al carrito
     </button>
