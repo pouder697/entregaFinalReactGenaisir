@@ -1,25 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
-import "../ItemCount/itemcountstyles.css"
+import "../ItemCount/itemcountstyles.css";
 
-const ItemCount = ( { productoSeleccionado } ) => {
+
+const ItemCount = ( { cantidad,handdleSumar,handdleRestar, handdleAgregar, handdleEliminar } ) => {
     
-    const [cantidad,setCantidad] =useState(1) 
 
-    const handdleRestar = () =>{
-      cantidad > 1 && setCantidad(cantidad - 1);
-    }
-
-    const handdleSumar= () =>{
-      cantidad < productoSeleccionado.stock && setCantidad(cantidad + 1);
-    }
   return (
+    <>
     <div className='item-count justify-content-center'>
       <h5>Unidades:</h5>
       <button onClick={handdleRestar}>-</button>
       <p>{cantidad}</p>
       <button onClick={handdleSumar}>+</button>
     </div>
+    <div className="addButton justify-content-center">
+    <button
+      type="button"
+      className="btn btn-success "
+      onClick={handdleAgregar}
+    >
+      + Agregar al carrito
+    </button>
+    <button
+      type='button'
+      className='btn btn-danger'
+    >
+      -Eliminar producto
+    </button>
+    </div>
+    </>
   )
 }
 

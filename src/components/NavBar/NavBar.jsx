@@ -14,7 +14,7 @@ function NavBar() {
                 <Logo />
             </Link>
                 <li className='navbarItem'>
-                    <NavLink to="/" className='navbarLink'> TODOS </NavLink>
+                    <NavLink to="/" className='navbarLink'> PRODUCTOS </NavLink>
                 </li>
                 <li className='navbarItem'>
                     <NavLink to="/hoodies" className='navbarLink'> HOODIES </NavLink>

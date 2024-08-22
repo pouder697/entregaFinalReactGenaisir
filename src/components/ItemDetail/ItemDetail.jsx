@@ -1,56 +1,64 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Item from "../Item/Item";
-import { useAppContext } from "../../contexts/AppContext";
+import React, { useState } from "react";
 import Loader from "../Loader/Loader";
-import AddCartButton from "../Buttons/AddCartButton"
 import ItemCount from "../ItemCount/ItemCount";
+import { useCartContext } from "../../contexts/CartContext";
 
+const ItemDetail = ({productoSeleccionado}) => {
+ 
+  const {carrito,addToCart} = useCartContext();
+  console.log(carrito);
 
-const ItemDetail = () => {
-  const { id } = useParams();
-  const {loadData, productos } = useAppContext();
-  const [productoSeleccionado, setProductoSeleccionado] = useState();
+  const [cantidad,setCantidad] =useState(1);
 
+  const handdleRestar = () =>{
+    cantidad > 1 && setCantidad(cantidad - 1);
+  }
 
-    useEffect(() =>{
-        console.log("Llamando a loadData desde ItemListContainer");
-        loadData();
-    },[])
-
-  useEffect(() => {
-    console.log("Productos en ItemDetail:", productos);
-    if (productos.length > 0) {
-      const findProduct = productos.find(el => el.id === parseInt(id));
-      console.log("Producto encontrado:", findProduct);
-      setProductoSeleccionado(findProduct);
-    }
-  }, [productos, id]);
+  const handdleSumar= () =>{
+    cantidad < productoSeleccionado.stock && setCantidad(cantidad + 1);
+  }
 
   return (
     <div className="row justify-content-center">
       {productoSeleccionado ? (
         <>
-          <h2>Detalle del producto</h2>
-          
-          <Item
-            key={productoSeleccionado.id}
-            id={productoSeleccionado.id}
-            nombre={productoSeleccionado.nombre}
-            precio={productoSeleccionado.precio}
-            imagen={productoSeleccionado.imagen}
-            categoria={productoSeleccionado.categoria}
-            stock={productoSeleccionado.stock}
-          />
+          <h2 id="bienvenidos">Detalle del producto</h2>
+
+          <div
+      style={{ width: "18rem" }}
+      className="productCard card col-lg-3 col-md-4 col-sm-12"
+    >
+      <div className="title">
+        <h4 className="card-title">{productoSeleccionado.nombre}</h4>
+      </div>
+      <img id="product-img" src={productoSeleccionado.imagen} />
+      <p className="price underline">
+        <b>Precio:</b> ${productoSeleccionado.precio}
+      </p>
+      <p className="card-text">
+        <b>Categoría:</b> {productoSeleccionado.categoria}
+      </p>
+      <p className="card-text stock">
+        <b>Stock:</b> {productoSeleccionado.stock} unidades
+      </p>
+    </div>
           <div className="card">
-  <div className="card-body">
-    <h5 className="card-title">¿Desea agregar este producto al Carrito De Compras?</h5>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the content.</p>
-    <ItemCount productoSeleccionado ={productoSeleccionado}/>
-    <AddCartButton />
-    
-  </div>
-</div>
+            <div className="card-body">
+              <h5 className="card-title">
+                ¿Desea agregar este producto al Carrito De Compras?
+              </h5>
+              <p className="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the content.
+              </p>
+              <ItemCount cantidad={cantidad} 
+                         handdleRestar = {handdleRestar}
+                         handdleSumar = {handdleSumar} 
+                         handdleAgregar={ () => { addToCart(productoSeleccionado,cantidad)}}
+                         />
+
+            </div>
+          </div>
         </>
       ) : (
         <Loader />

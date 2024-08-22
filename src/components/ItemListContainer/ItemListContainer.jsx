@@ -23,7 +23,7 @@ const ItemListContainer = () => {
                     :
                     <>
                     <main>
-                    <h2 style={{padding: "2rem"}}>Bienvenidos a CLOTHING®</h2>
+                    <h2 id="bienvenidos" style={{padding: "2rem"}}>Bienvenidos a CLOTHING®</h2>
                     <ItemList className="listContainer" productos={productos} />
                     </main>
                     </>

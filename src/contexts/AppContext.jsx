@@ -32,12 +32,6 @@ function loadData() {
       .catch((err) => console.error(err));
 }*/
 
-
-
-
-
-
-
     return(
         <AppContext.Provider value={{ productos, loadData }}>
             {props.children}

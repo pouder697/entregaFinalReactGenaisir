@@ -17,7 +17,7 @@ const ItemList = ({ productos }) => {
       {/* Barra de búsqueda */}
       <input
         type="text"
-        placeholder="Buscar producto..."
+        placeholder="🔍︎ Buscar producto..."
         value={terminoDeBusqueda}
         onChange={(e) => setTerminoDeBusqueda(e.target.value)}
       />
