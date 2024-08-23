@@ -1,4 +1,4 @@
-<h1>Ecommerce de Prendas de Ropa</h1>
+<h1>CLOTHING</h1>
 ¡Bienvenido al proyecto Ecommerce de Prendas de Ropa! Este repositorio presenta una aplicación desarrollada en React que permite a los usuarios explorar, seleccionar y comprar una variedad de prendas de vestir de manera fácil y eficiente. A continuación, se describen las principales funciones y características de la aplicación.
 
 <h2>Descripción del Proyecto</h2>
