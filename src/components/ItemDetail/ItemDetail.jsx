@@ -5,7 +5,7 @@ import { useCartContext } from "../../contexts/CartContext";
 
 const ItemDetail = ({productoSeleccionado}) => {
  
-  const {carrito,addToCart} = useCartContext();
+  const {carrito,addToCart, deleteFromCart} = useCartContext();
   console.log(carrito);
 
   const [cantidad,setCantidad] =useState(1);
@@ -55,7 +55,7 @@ const ItemDetail = ({productoSeleccionado}) => {
                          handdleRestar = {handdleRestar}
                          handdleSumar = {handdleSumar} 
                          handdleAgregar={ () => { addToCart(productoSeleccionado,cantidad)}}
-                         />
+                         handdleEliminar={() => {deleteFromCart(productoSeleccionado,cantidad)}}/>
 
             </div>
           </div>

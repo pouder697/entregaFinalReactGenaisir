@@ -24,6 +24,7 @@ const ItemCount = ( { cantidad,handdleSumar,handdleRestar, handdleAgregar, handd
     <button
       type='button'
       className='btn btn-danger'
+      onClick={handdleEliminar}
     >
       -Eliminar producto
     </button>

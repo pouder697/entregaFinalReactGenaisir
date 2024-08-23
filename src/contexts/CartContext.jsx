@@ -19,7 +19,7 @@ export const CartContextProvider = ({children}) => {
 
     console.log("hola")
     if(seEncuentraEnCart){
-      seEncuentraEnCart.cantidad =+ cantidad;
+      seEncuentraEnCart.cantidad += cantidad;
     }else{
       nuevoCarrito.push(productoAgregado)
     }
@@ -30,6 +30,33 @@ export const CartContextProvider = ({children}) => {
     })
     setCarrito(nuevoCarrito)
   }
+  
+  const deleteFromCart = (productoSeleccionado, cantidad) => {
+    const nuevoCarrito = [...carrito];
+    const productoEnCart = nuevoCarrito.find((producto) => producto.id === productoSeleccionado.id);
+
+    if (productoEnCart) {
+      productoEnCart.cantidad -= cantidad;
+
+      if (productoEnCart.cantidad <= 0) {
+        const index = nuevoCarrito.indexOf(productoEnCart);
+        nuevoCarrito.splice(index, 1);
+      }
+
+      Swal.fire({
+        icon: "info",
+        text: `Eliminaste ${cantidad} ${productoEnCart.nombre} del carrito`
+      });
+
+      setCarrito(nuevoCarrito);
+    } else {
+      Swal.fire({
+        icon: "error",
+        text: `El producto no se encuentra en el carrito`
+      });
+    }
+  };
+
 
 const cantidadEnCarrito = () => {
   return carrito.reduce((acc,prod) => acc + prod.cantidad, 0);
@@ -47,7 +74,7 @@ const vaciarCarrito =() =>{
     localStorage.setItem("carrito",JSON.stringify(carrito))
   }, [carrito])
     return(
-        <CartContext.Provider value={{ carrito, vaciarCarrito, addToCart, cantidadEnCarrito, precioTotal}}>
+        <CartContext.Provider value={{ carrito, vaciarCarrito, addToCart,deleteFromCart,cantidadEnCarrito, precioTotal}}>
             {children}
         </CartContext.Provider>
     );
